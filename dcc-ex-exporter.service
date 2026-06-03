@@ -1,0 +1,19 @@
+[Unit]
+Description=DCC-EX Prometheus Exporter
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/local/dccex-exporter --dccex-host dccex
+Restart=always
+RestartSec=2
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
